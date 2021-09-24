@@ -4,7 +4,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH --nodes=4
 #SBATCH --ntasks-per-node=48
-#SBATCH --time=0-12:05
+#SBATCH --time=0-11:30
 #SBATCH --mem=0
 #SBATCH --constraint=[skylake]
 
