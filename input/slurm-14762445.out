@@ -1,0 +1,24 @@
+/home/jklymak/project/jklymak/AbHillInter/results/Patch1kmlowU10N10Amp305f141B059Rough/input
+-rwxr-x--- 1 jklymak jklymak 3185264 Sep 21 05:16 ../build/mitgcmuv
+/tmp/tmpm6nl_ozj
+/tmp/tmp_libx47a
+/tmp/tmpql19bln7
+Starting: /home/jklymak/project/jklymak/AbHillInter/results/Patch1kmlowU10N10Amp305f141B059Rough
+
+Currently Loaded Modules:
+  1) CCconfig             4) imkl/2020.1.217  (math)   7) libfabric/1.10.1
+  2) gentoo/2020    (S)   5) intel/2020.1.217 (t)      8) openmpi/4.0.3    (m)
+  3) gcccore/.9.3.0 (H)   6) ucx/1.8.0                 9) StdEnv/2020      (S)
+
+  Where:
+   H:     Hidden Module
+   S:     Module is Sticky, requires --force to unload or purge
+   m:     MPI implementations / Implémentations MPI
+   math:  Mathematical libraries / Bibliothèques mathématiques
+   t:     Tools for development / Outils de développement
+
+ 
+
+/opt/software/slurm/bin/srun
+srun: Warning: can't honor --ntasks-per-node set to 48 which doesn't match the requested tasks 192 with the number of requested nodes 192. Ignoring --ntasks-per-node.
+srun: error: Only allocated 4 nodes asked for 192

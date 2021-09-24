@@ -1,0 +1,30 @@
+/home/jklymak/project/jklymak/AbHillInter/results/Patch1kmlowU10N10Amp305f141B059Rough/input
+-rwxr-x--- 1 jklymak jklymak 3185264 Sep 21 05:16 ../build/mitgcmuv
+/tmp/tmpoacq6a_y
+/tmp/tmpd_1uvsad
+/tmp/tmp3bz66m03
+Starting: /home/jklymak/project/jklymak/AbHillInter/results/Patch1kmlowU10N10Amp305f141B059Rough
+
+Currently Loaded Modules:
+  1) CCconfig             4) imkl/2020.1.217  (math)   7) libfabric/1.10.1
+  2) gentoo/2020    (S)   5) intel/2020.1.217 (t)      8) openmpi/4.0.3    (m)
+  3) gcccore/.9.3.0 (H)   6) ucx/1.8.0                 9) StdEnv/2020      (S)
+
+  Where:
+   H:     Hidden Module
+   S:     Module is Sticky, requires --force to unload or purge
+   m:     MPI implementations / Implémentations MPI
+   math:  Mathematical libraries / Bibliothèques mathématiques
+   t:     Tools for development / Outils de développement
+
+ 
+
+/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/Compiler/intel2020/openmpi/4.0.3/bin/mpiexec
+--------------------------------------------------------------------------
+An ORTE daemon has unexpectedly failed after launch and before
+communicating back to mpirun. This could be caused by a number
+of factors, including an inability to create a connection back
+to mpirun due to a lack of common network interfaces and/or no
+route found between them. Please check network connectivity
+(including firewalls and network routing requirements).
+--------------------------------------------------------------------------
