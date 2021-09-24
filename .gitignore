@@ -1,0 +1,8 @@
+results
+build
+archive
+reduceddata
+slurm*.out
+**/__pycache__
+.tramp_history
+.ipynb_checkpoints
