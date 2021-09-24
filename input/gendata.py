@@ -40,9 +40,9 @@ if patch:
 
 suff = 'Rough'
 
-runname='Patch1km%sU%dN%02dAmp%df%03dB%03d%s'%(runtype, u0, N0*1e4, amp, f0*1000000,
+runname='OneHill100%sU%dN%02dAmp%df%03dB%03d%s'%(runtype, u0, N0*1e4, amp, f0*1000000,
                                      geo_beta*1e13, suff)
-comments = 'Forward basic case'
+comments = 'One 100 km radius hill, full roughness.'
 
 # to change U we need to edit external_forcing recompile
 
