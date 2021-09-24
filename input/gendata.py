@@ -439,4 +439,12 @@ shutil.copytree(outdir0+'/input/', '../archive/'+runname+'/input')
 shutil.copytree(outdir0+'/python/', '../archive/'+runname+'/python')
 shutil.copytree(outdir0+'/code', '../archive/'+runname+'/code')
 
+_log.info('doing this via git!')
+
+os.system(f'git commit -a -m "gendata for {runname}"')
+os.system('git push origin main')
+os.system(f'git checkout -B {runname}')
+os.system(f'git push origin {runname}')
+os.system('git checkout main')
+
 exit()
