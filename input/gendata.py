@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from shutil import copy
 from os import mkdir
 import shutil,os,glob
-# import scipy.signal as scisig
+import scipy.signal as scisig
 from maketopo import getTopo2D
 import logging
 from replace_data import replace_data
@@ -29,7 +29,9 @@ geo_beta = 5.9e-12
 # geo_beta = 0
 wall = True
 patch = True
-ndec = 0
+ndec = 100
+useVar_Bot_Drag = True
+
 if wall:
     suff = 'Wall'
 else:
@@ -38,11 +40,14 @@ else:
 if patch:
     suff = f'Patch{ndec*5}'
 
-suff = 'Rough'
+if useVar_Bot_Drag:
+  suff = 'Sm200'
+else:
+  suff += 'Rough'
 
 runname='OneHill100%sU%dN%02dAmp%df%03dB%03d%s'%(runtype, u0, N0*1e4, amp, f0*1000000,
                                      geo_beta*1e13, suff)
-comments = 'One 100 km radius hill, full roughness.'
+comments = 'One 100 km radius hill, smooth.'
 
 # to change U we need to edit external_forcing recompile
 
@@ -67,6 +72,11 @@ replace_data('dataF', 'f0', '%1.3e'%f0)
 replace_data('dataF', 'beta', '%1.3e'%geo_beta)
 
 replace_data('data.btforcing', 'btforcingU0', '%1.3e'%U0)
+
+if useVar_Bot_Drag:
+  replace_data('data.pkg', 'useVar_Bot_Drag', '.TRUE.')
+else:
+  replace_data('data.pkg', 'useVar_Bot_Drag', '.FALSE.')
 
 # topography parameters:
 useFiltTop=False
@@ -262,6 +272,9 @@ hlow = hlow * env
 
 hnew = hlow * 1.0
 if ndec > 0:
+  hnew = scisig.convolve2d(hlow, np.ones((ndec, ndec)) / ndec**2, 
+                           mode='same', boundary='wrap')
+if False:
   for i in range(nx):
       for j in range(ny):
           #print(np.floor((i-2)/4) * 4)
@@ -354,8 +367,10 @@ ldrag = 0.0 * np.ones((ny, nx))
 
 hh = amp * np.ones((ny, nx))
 hh = hh * env
-qdrag  = hh * np.pi**2 / 2 / 100e3
-ldrag  = hh**2 * np.pi / 2 / 100e3  # * N0
+# from AbiHillInterAnalysis/AnalyzeMatrix, linear regression
+ldrag  = hh**1.68 * 2.78e-6
+#qdrag  = hh * np.pi**2 / 2 / 100e3
+#ldrag  = hh**2 * np.pi / 2 / 100e3  # * N0
 
 #X, Y = np.meshgrid(x, y)
 #R2 = X**2 + Y**2
@@ -441,7 +456,7 @@ shutil.copytree(outdir0+'/code', '../archive/'+runname+'/code')
 
 _log.info('doing this via git!!')
 
-os.system(f'git commit -a -m "gendata for {runname}"')
+os.system(f'git commit -a -m "gendata for {runname}: {comments}"')
 os.system('git push origin main')
 os.system(f'git checkout -B {runname}')
 os.system(f'git push origin {runname}')

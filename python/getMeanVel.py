@@ -33,21 +33,15 @@ for runname in runnames:
 
 
     if 1:
-        with xm.open_mdsdataset(data_dir, prefix=['means'], endian="<", geometry='cartesian') as ds:
-            #ds = ds.chunk(chunks={'time':1, 'Z':10})
+        with xm.open_mdsdataset(data_dir, prefix=['means'], 
+                                endian="<", geometry='cartesian',
+                                chunks="2D") as ds:
             print(ds)
-            print(ds.rAw)
-            print(ds.hFacW)
-            print(ds.UVEL)
             w = (ds['VVEL'] * ds['hFacS'] * ds['rAs'] * f0 * U0 ).sum(dim=('YG', 'XC'))
             w.attrs['Processing'] = 'made with getMeanVel.py'
 
             work = xr.Dataset({'work': w})
             work['AreaS'] = ds['rAs'].sum(dim=('YG', 'XC')).values
             work['meanU'] = (ds['UVEL'] * ds['hFacW'] * ds['rAw']).sum(dim=('YC', 'XG'))
-            print(work)
-            #work['meanU'] = work['meanU'] / work.AreaS.values
-            print(work)
-            # print(work.load())
-            with ProgressBar():
-                work.to_zarr(f'{out_dir}/workMean.zarr', mode='w')
+            
+            work.to_zarr(f'{out_dir}/workMean.zarr', mode='w')

@@ -2,17 +2,20 @@
 #SBATCH --account=def-jklymak
 #SBATCH --mail-user=jklymak@gmail.com
 #SBATCH --mail-type=ALL
-#SBATCH --ntasks-per-node=1
-#SBATCH --time=0-00:05
-#SBATCH --mem=32G
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=48
+#SBATCH --time=0-00:15
+#SBATCH --mem=0
 
 source ~/venvs/AbHillInter2/bin/activate
 
-PARENT=AbHillInter
+PARENT=AbHillInterNew
 cd $PROJECT/jklymak/$PARENT/python
 pwd
 todo=${SLURM_JOB_NAME}
 
 # python getWork.py $todo
 python getMeanVel.py $todo
+python get2D.py $todo
+
 rsync -av ../reduceddata/ pender.seos.uvic.ca:AbHillInterAnalysis/reduceddata
