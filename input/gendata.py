@@ -47,7 +47,7 @@ else:
 
 runname='OneHill100%sU%dN%02dAmp%df%03dB%03d%s'%(runtype, u0, N0*1e4, amp, f0*1000000,
                                      geo_beta*1e13, suff)
-comments = 'One 100 km radius hill, smooth.'
+comments = 'One 100 km radius hill, smoothed with var drag, fixed typo'
 
 # to change U we need to edit external_forcing recompile
 
@@ -267,7 +267,7 @@ radius = 100e3
 env = 1    
 if patch:
   env = X * 0
-  env = np.exp(-(R/radius**2)**3)
+  env = np.exp(-(R/radius)**6)
 hlow = hlow * env
 
 hnew = hlow * 1.0
