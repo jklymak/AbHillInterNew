@@ -15,7 +15,7 @@ pwd
 todo=${SLURM_JOB_NAME}
 
 # python getWork.py $todo
-python getMeanVel.py $todo
+#python getMeanVel.py $todo
 python get2D.py $todo
 
 rsync -av ../reduceddata/ pender.seos.uvic.ca:AbHillInterAnalysis/reduceddata

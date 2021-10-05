@@ -29,8 +29,8 @@ geo_beta = 5.9e-12
 # geo_beta = 0
 wall = True
 patch = True
-ndec = 0
-useVar_Bot_Drag = False
+ndec = 100
+useVar_Bot_Drag = True
 
 if wall:
     suff = 'Wall'
@@ -294,11 +294,13 @@ f.close()
 
 _log.info(np.shape(d))
 
-fig, ax = plt.subplots(2,1)
+fig, ax = plt.subplots(2,1, constrained_layout=True)
 _log.info('%s %s', np.shape(x), np.shape(d))
-ax[0].plot(x/1.e3,d[0,:].T)
+for i in range(0, ny, int(np.ceil(ny/20))):
+  ax[0].plot(x/1.e3, d[i,:].T)
 
-pcm=ax[1].pcolormesh(x/1.e3,y/1.e3,d,rasterized=True)
+pcm=ax[1].pcolormesh(x/1.e3,y/1.e3,d,rasterized=True, 
+                     shading='auto', vmin=-4000, vmax=-3000)
 fig.colorbar(pcm,ax=ax[1])
 fig.savefig(outdir+'/figs/topo.png')
 
