@@ -43,7 +43,7 @@ if patch:
 if useVar_Bot_Drag:
   suff = 'Sm200'
 else:
-  suff += 'Rough'
+  suff = 'Rough'
 
 runname='OneHill100%sU%dN%02dAmp%df%03dB%03d%s'%(runtype, u0, N0*1e4, amp, f0*1000000,
                                      geo_beta*1e13, suff)
