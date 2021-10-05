@@ -272,6 +272,7 @@ hlow = hlow * env
 
 hnew = hlow * 1.0
 if ndec > 0:
+  print('convolve!')
   hnew = scisig.convolve2d(hlow, np.ones((ndec, ndec)) / ndec**2, 
                            mode='same', boundary='wrap')
 if False:
