@@ -265,9 +265,11 @@ centerx = 0
 centery = 0
 radius = 100e3
 env = 1    
+print(hlow)
 if patch:
   env = X * 0
   env = np.exp(-(R/radius)**6)
+print(R)
 hlow = hlow * env
 
 hnew = hlow * 1.0
@@ -283,8 +285,10 @@ if False:
           jr = np.mod(j + np.arange(ndec)-ndec/2, ny).astype(int)
           hnew[j, i] = np.mean(hlow[jr,:][:, ir])
 
+print(hlow[600,:])
 
 d= hnew  - H
+print(d)
 if wall:
     d[0, :] = 0.0
 
