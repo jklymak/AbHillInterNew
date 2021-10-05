@@ -29,7 +29,7 @@ geo_beta = 5.9e-12
 # geo_beta = 0
 wall = True
 patch = True
-ndec = 0
+ndec = 100
 useVar_Bot_Drag = True
 
 if wall:
@@ -276,14 +276,15 @@ pcm=ax[1].pcolormesh(x/1.e3,y/1.e3,env,rasterized=True,
                     shading='auto', )
 fig.savefig(outdir+'/figs/env.png')
 
-
-hlow = hlow * env
-
-hnew = hlow * 1.0
 if ndec > 1:
   print('convolve!')
-  hnew = scisig.convolve2d(hlow, np.ones((ndec, ndec)) / ndec**2, 
+  hlow = scisig.convolve2d(hlow, np.ones((ndec, ndec)) / ndec**2, 
                            mode='same', boundary='wrap')
+
+hnew = hlow * env
+
+
+# hnew = hlow * 1.0
 if False:
   for i in range(nx):
       for j in range(ny):
