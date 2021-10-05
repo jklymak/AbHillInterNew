@@ -273,7 +273,7 @@ if patch:
 print(R)
 fig, ax = plt.subplots(2,1, constrained_layout=True)
 pcm=ax[1].pcolormesh(x/1.e3,y/1.e3,env,rasterized=True, 
-                    shading='auto', vmin=-4000, vmax=-3000)
+                    shading='auto', vmin=0, vmax=1)
 fig.savefig(outdir+'/figs/env.png')
 
 
