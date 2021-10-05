@@ -260,7 +260,7 @@ hlow = np.real(hlow - np.mean(hlow) + np.mean(h))
 xx = x - np.mean(x)
 yy = y - np.mean(y)
 X, Y = np.meshgrid(xx, yy)
-R = X**2 + Y**2
+R = np.sqrt(X**2 + Y**2)
 centerx = 0
 centery = 0
 radius = 100e3
@@ -272,7 +272,7 @@ if patch:
 
 print(R)
 fig, ax = plt.subplots(2,1, constrained_layout=True)
-pcm=ax[1].pcolormesh(x/1.e3,y/1.e3,R,rasterized=True, 
+pcm=ax[1].pcolormesh(x/1.e3,y/1.e3,env,rasterized=True, 
                     shading='auto', )
 fig.savefig(outdir+'/figs/env.png')
 
@@ -280,7 +280,7 @@ fig.savefig(outdir+'/figs/env.png')
 hlow = hlow * env
 
 hnew = hlow * 1.0
-if ndec > 100000:
+if ndec > 1:
   print('convolve!')
   hnew = scisig.convolve2d(hlow, np.ones((ndec, ndec)) / ndec**2, 
                            mode='same', boundary='wrap')
@@ -292,10 +292,9 @@ if False:
           jr = np.mod(j + np.arange(ndec)-ndec/2, ny).astype(int)
           hnew[j, i] = np.mean(hlow[jr,:][:, ir])
 
-print(hlow[600,:])
 
 d= hnew  - H
-print(d)
+
 if wall:
     d[0, :] = 0.0
 
