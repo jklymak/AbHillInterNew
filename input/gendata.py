@@ -269,7 +269,14 @@ print(hlow)
 if patch:
   env = X * 0
   env = np.exp(-(R/radius)**6)
+
 print(R)
+fig, ax = plt.subplots(2,1, constrained_layout=True)
+pcm=ax[1].pcolormesh(x/1.e3,y/1.e3,env,rasterized=True, 
+                    shading='auto', vmin=-4000, vmax=-3000)
+fig.savefig(outdir+'/figs/env.png')
+
+
 hlow = hlow * env
 
 hnew = hlow * 1.0
