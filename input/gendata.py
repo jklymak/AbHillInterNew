@@ -29,7 +29,7 @@ geo_beta = 5.9e-12
 # geo_beta = 0
 wall = True
 patch = True
-ndec = 100
+ndec = 0
 useVar_Bot_Drag = True
 
 if wall:
