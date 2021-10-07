@@ -29,7 +29,7 @@ geo_beta = 5.9e-12
 # geo_beta = 0
 wall = True
 patch = True
-ndec = 0
+ndec = 100
 useVar_Bot_Drag = False
 
 if wall:
@@ -40,8 +40,10 @@ else:
 if patch:
     suff = f'Patch{ndec*5}'
 
-if useVar_Bot_Drag:
+if useVar_Bot_Drag and ndec>0:
   suff = 'Sm200'
+elif ndec>0:
+  suff = 'SmNoDrag'
 else:
   suff = 'Rough'
 
