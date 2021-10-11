@@ -30,7 +30,8 @@ for runname in runnames:
 
 
     if 1:
-        with xm.open_mdsdataset(data_dir, prefix=['spinup2d'], endian="<", geometry='cartesian') as ds:
+        with xm.open_mdsdataset(data_dir, prefix=['spinup2d'], endian="<", 
+                                geometry='cartesian', iters=[0]) as ds:
             #ds = ds.chunk(chunks={'time':1, 'Z':10})
             print(ds)
             twod = xr.Dataset({'ETAN': ds['ETAN'], 'DEPTH': ds['Depth']})
