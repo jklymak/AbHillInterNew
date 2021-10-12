@@ -29,8 +29,8 @@ geo_beta = 5.9e-12
 # geo_beta = 0
 wall = True
 patch = True
-ndec = 100
-useVar_Bot_Drag = True
+ndec = 0
+useVar_Bot_Drag = False
 
 if wall:
     suff = 'Wall'
@@ -47,9 +47,9 @@ elif ndec>0:
 else:
   suff = 'Rough'
 
-runname='OneHill100%sU%dN%02dAmp%df%03dB%03d%s'%(runtype, u0, N0*1e4, amp, f0*1000000,
+runname='OneHill300%sU%dN%02dAmp%df%03dB%03d%s'%(runtype, u0, N0*1e4, amp, f0*1000000,
                                      geo_beta*1e13, suff)
-comments = 'One 100 km radius hill, smooth, no param drag'
+comments = 'One 300 km radius hill, rough, no param drag'
 
 # to change U we need to edit external_forcing recompile
 
@@ -265,7 +265,7 @@ X, Y = np.meshgrid(xx, yy)
 R = np.sqrt(X**2 + Y**2)
 centerx = 0
 centery = 0
-radius = 100e3
+radius = 300e3
 env = 1    
 print(hlow)
 if patch:
