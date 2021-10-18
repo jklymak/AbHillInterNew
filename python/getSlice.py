@@ -20,7 +20,8 @@ if True:
     ds = xm.open_mdsdataset(data_dir, prefix=['spinup'], endian='=',
                         geometry='cartesian')
     print(ds)
-    ds = ds.isel(YC=200, YG=200)
+    mid = int(ds.sizes['YC'] / 2)
+    ds = ds.isel(YC=mid, YG=mid)
     print(ds)
     with ProgressBar():
         #ds.to_netcdf(f'../reduceddata/{runname}/SliceMid.nc', engine='netcdf4')

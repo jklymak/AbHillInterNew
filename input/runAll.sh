@@ -1,8 +1,8 @@
 #!/bin/bash -l
-for todo in OneHill100lowU10N10Amp305f141B059Sm200
+for todo in  OneHill300lowU10N10Amp305f141B059Sm200
 do
     day=86400
-    jobid=$(sbatch -J $todo --export=start=0,stop=$((day*6 + 180)),dt=90 runModel.sh)
+    jobid=$(sbatch -J $todo --export=start=$((day*3)),stop=$((day*6 + 180)),dt=90 runModel.sh)
     #echo $jobid
     jobid1=$(sbatch  -J $todo --dependency=afterok:${jobid##* } --export=start=$((day*6)),stop=$((day*12 + 180)),dt=90 runModel.sh)
     jobid2=$(sbatch  -J $todo --dependency=afterok:${jobid1##* } --export=start=$((day*12)),stop=$((day*18 + 180)),dt=90 runModel.sh)

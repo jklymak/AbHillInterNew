@@ -28,9 +28,9 @@ f0 = 1.410e-4
 geo_beta = 5.9e-12 
 # geo_beta = 0
 wall = True
-patch = True
-ndec = 100
-useVar_Bot_Drag = True
+patch = False
+ndec = 0
+useVar_Bot_Drag = False
 
 if wall:
     suff = 'Wall'
@@ -47,9 +47,9 @@ elif ndec>0:
 else:
   suff = 'Rough'
 
-runname='OneHill300%sU%dN%02dAmp%df%03dB%03d%s'%(runtype, u0, N0*1e4, amp, f0*1000000,
+runname='NoHill%sU%dN%02dAmp%df%03dB%03d%s'%(runtype, u0, N0*1e4, amp, f0*1000000,
                                      geo_beta*1e13, suff)
-comments = 'One 300 km radius hill, smooth, with param drag'
+comments = 'No hill, but wall and beta; rough'
 
 # to change U we need to edit external_forcing recompile
 
@@ -272,11 +272,11 @@ if patch:
   env = X * 0
   env = np.exp(-(R/radius)**6)
 
-print(R)
-fig, ax = plt.subplots(2,1, constrained_layout=True)
-pcm=ax[1].pcolormesh(x/1.e3,y/1.e3,env,rasterized=True, 
-                    shading='auto', )
-fig.savefig(outdir+'/figs/env.png')
+  print(R)
+  fig, ax = plt.subplots(2,1, constrained_layout=True)
+  pcm=ax[1].pcolormesh(x/1.e3,y/1.e3,env,rasterized=True, 
+                      shading='auto', )
+  fig.savefig(outdir+'/figs/env.png')
 
 if ndec > 1:
   print('convolve!')
