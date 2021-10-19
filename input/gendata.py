@@ -26,10 +26,10 @@ u0 = 10
 N0 = 1e-3
 f0 = 1.410e-4
 geo_beta = 5.9e-12 
-# geo_beta = 0
-wall = True
+geo_beta = 0
+wall = False
 patch = False
-ndec = 100
+ndec = 0
 useVar_Bot_Drag = False
 
 if wall:
@@ -47,9 +47,9 @@ elif ndec>0:
 else:
   suff = 'Rough'
 
-runname='NoHill%sU%dN%02dAmp%df%03dB%03d%s'%(runtype, u0, N0*1e4, amp, f0*1000000,
+runname='NoWall%sU%dN%02dAmp%df%03dB%03d%s'%(runtype, u0, N0*1e4, amp, f0*1000000,
                                      geo_beta*1e13, suff)
-comments = 'No hill, but wall and beta; smooth, No param'
+comments = 'No hill, no wall or beta; rough, No param'
 
 # to change U we need to edit external_forcing recompile
 
