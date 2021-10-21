@@ -49,7 +49,7 @@ else:
 
 runname='NoWall%sU%dN%02dAmp%df%03dB%03d%s'%(runtype, u0, N0*1e4, amp, f0*1000000,
                                      geo_beta*1e13, suff)
-comments = 'No hill, no wall or beta; smooth, param'
+comments = 'No hill, no wall or beta; smooth, param; redo with correct N power'
 
 # to change U we need to edit external_forcing recompile
 
