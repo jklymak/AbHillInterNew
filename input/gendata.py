@@ -26,8 +26,8 @@ u0 = 10
 N0 = 1e-3
 f0 = 1.410e-4
 geo_beta = 5.9e-12 
-geo_beta = 0
-wall = False
+# geo_beta = 0
+wall = True
 patch = False
 ndec = 100
 useVar_Bot_Drag = True
@@ -47,7 +47,7 @@ elif ndec>0:
 else:
   suff = 'Rough'
 
-runname='NoWall%sU%dN%02dAmp%df%03dB%03d%s'%(runtype, u0, N0*1e4, amp, f0*1000000,
+runname='OneHill100%sU%dN%02dAmp%df%03dB%03d%s'%(runtype, u0, N0*1e4, amp, f0*1000000,
                                      geo_beta*1e13, suff)
 comments = 'No hill, no wall or beta; smooth, param; redo with correct N power'
 
@@ -265,7 +265,7 @@ X, Y = np.meshgrid(xx, yy)
 R = np.sqrt(X**2 + Y**2)
 centerx = 0
 centery = 0
-radius = 300e3
+radius = 100e3
 env = 1    
 print(hlow)
 if patch:
