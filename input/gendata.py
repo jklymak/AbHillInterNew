@@ -28,7 +28,7 @@ f0 = 1.410e-4
 geo_beta = 5.9e-12 
 # geo_beta = 0
 wall = True
-patch = False
+patch = True
 ndec = 100
 useVar_Bot_Drag = True
 
