@@ -29,7 +29,7 @@ geo_beta = 5.9e-12
 # geo_beta = 0
 wall = True
 patch = True
-ndec = 100
+ndec = 0
 useVar_Bot_Drag = False
 
 if wall:
@@ -49,7 +49,7 @@ else:
 
 runname='OneHill100%sU%dN%02dAmp%df%03dB%03d%s'%(runtype, u0, N0*1e4, amp, f0*1000000,
                                      geo_beta*1e13, suff)
-comments = 'One 100 km radius hill, smooth, with no param drag, but using the same code'
+comments = 'One 100 km radius hill, rough, but using the same code'
 
 # to change U we need to edit external_forcing recompile
 
