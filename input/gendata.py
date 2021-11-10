@@ -47,9 +47,9 @@ elif ndec>0:
 else:
   suff = 'Rough'
 
-runname='OneHill100%sU%dN%02dAmp%df%03dB%03d%s'%(runtype, u0, N0*1e4, amp, f0*1000000,
+runname='OneHill300%sU%dN%02dAmp%df%03dB%03d%s'%(runtype, u0, N0*1e4, amp, f0*1000000,
                                      geo_beta*1e13, suff)
-comments = 'No hill, no wall or beta; smooth, param; redo with correct N power'
+comments = 'One 300 km radius hill, smooth, with param drag correct N power'
 
 # to change U we need to edit external_forcing recompile
 
@@ -265,7 +265,7 @@ X, Y = np.meshgrid(xx, yy)
 R = np.sqrt(X**2 + Y**2)
 centerx = 0
 centery = 0
-radius = 100e3
+radius = 300e3
 env = 1    
 print(hlow)
 if patch:

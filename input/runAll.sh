@@ -1,5 +1,5 @@
 #!/bin/bash -l
-for todo in  OneHill100lowU10N10Amp305f141B059Sm200Booger
+for todo in  OneHill100lowU10N10Amp305f141B059Sm200
 do
     day=86400
     jobid=$(sbatch -J $todo --export=start=$((day*0)),stop=$((day*6 + 180)),dt=180 runModel.sh)
