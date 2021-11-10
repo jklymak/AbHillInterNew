@@ -49,7 +49,7 @@ else:
 
 runname='OneHill100%sU%dN%02dAmp%df%03dB%03d%s'%(runtype, u0, N0*1e4, amp, f0*1000000,
                                      geo_beta*1e13, suff)
-comments = 'One 300 km radius hill, smooth, with param drag correct N power'
+comments = 'One 100 km radius hill, smooth, with no param drag, but using the same code'
 
 # to change U we need to edit external_forcing recompile
 
