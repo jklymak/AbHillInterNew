@@ -22,10 +22,10 @@
  sBeta =0.E-4,
  gravity=9.81,
  implicitFreeSurface=.FALSE.,
- exactConserv=.FALSE.
- rigidLid=.TRUE.
- bottomDragQuadratic=1.0E-4
- bottomDragLinear=0.0
+ exactConserv=.FALSE.,
+ rigidLid=.TRUE.,
+ bottomDragQuadratic=1.0E-4,
+ bottomDragLinear=0.0,
  nonHydrostatic=.FALSE.,
  hFacMin=1.,
  tempAdvScheme=77,

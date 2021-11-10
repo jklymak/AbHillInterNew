@@ -30,7 +30,7 @@ geo_beta = 5.9e-12
 wall = True
 patch = True
 ndec = 100
-useVar_Bot_Drag = True
+useVar_Bot_Drag = False
 
 if wall:
     suff = 'Wall'
@@ -47,7 +47,7 @@ elif ndec>0:
 else:
   suff = 'Rough'
 
-runname='OneHill300%sU%dN%02dAmp%df%03dB%03d%s'%(runtype, u0, N0*1e4, amp, f0*1000000,
+runname='OneHill100%sU%dN%02dAmp%df%03dB%03d%s'%(runtype, u0, N0*1e4, amp, f0*1000000,
                                      geo_beta*1e13, suff)
 comments = 'One 300 km radius hill, smooth, with param drag correct N power'
 
@@ -79,6 +79,9 @@ if useVar_Bot_Drag:
   replace_data('data.pkg', 'useVar_Bot_Drag', '.TRUE.')
 else:
   replace_data('data.pkg', 'useVar_Bot_Drag', '.FALSE.')
+# make alway True, which is a bit slow, but allows the 
+# bottom boundary conditions to be the same between runs...
+replace_data('data.pkg', 'useVar_Bot_Drag', '.TRUE.')
 
 # topography parameters:
 useFiltTop=False
@@ -265,7 +268,7 @@ X, Y = np.meshgrid(xx, yy)
 R = np.sqrt(X**2 + Y**2)
 centerx = 0
 centery = 0
-radius = 300e3
+radius = 100e3
 env = 1    
 print(hlow)
 if patch:
@@ -378,13 +381,16 @@ if False:
 
 ################################
 # make drag co-efficients:
-qdrag = 0.0 * np.ones((ny, nx))
-ldrag = 0.0 * np.ones((ny, nx))
+qdrag = 0 * np.ones((ny, nx))  
+ldrag = 0 * np.ones((ny, nx))
 
 hh = amp * np.ones((ny, nx))
 hh = hh * env
-# from AbiHillInterAnalysis/AnalyzeMatrix, linear regression
-ldrag  = hh**1.68 * 2.78e-6
+if useVar_Bot_Drag:
+  # from AbiHillInterAnalysis/AnalyzeMatrix, linear regression
+  ldrag  = hh**1.68 * 2.78e-6
+# otherwise:
+#    drags are zero!
 #qdrag  = hh * np.pi**2 / 2 / 100e3
 #ldrag  = hh**2 * np.pi / 2 / 100e3  # * N0
 
