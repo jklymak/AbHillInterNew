@@ -22,10 +22,10 @@ K0 = 1.8e-4/2./np.pi
 L0 = 1.8e-4/2./np.pi
 runtype = 'low'  # 'full','filt','low'
 setupname=''
-u0 = 10
+u0 = 5
 N0 = 1e-3
 f0 = 1.410e-4
-geo_beta = 5.9e-12 
+geo_beta = 5.9e-12
 # geo_beta = 0
 wall = True
 patch = True
@@ -75,11 +75,11 @@ replace_data('dataF', 'beta', '%1.3e'%geo_beta)
 
 replace_data('data.btforcing', 'btforcingU0', '%1.3e'%U0)
 
-if useVar_Bot_Drag:
-  replace_data('data.pkg', 'useVar_Bot_Drag', '.TRUE.')
-else:
-  replace_data('data.pkg', 'useVar_Bot_Drag', '.FALSE.')
-# make alway True, which is a bit slow, but allows the 
+#if useVar_Bot_Drag:
+#  replace_data('data.pkg', 'useVar_Bot_Drag', '.TRUE.')
+#else:
+#  replace_data('data.pkg', 'useVar_Bot_Drag', '.FALSE.')
+# make alway True, which is a bit slow, but allows the
 # bottom boundary conditions to be the same between runs...
 replace_data('data.pkg', 'useVar_Bot_Drag', '.TRUE.')
 
@@ -269,7 +269,7 @@ R = np.sqrt(X**2 + Y**2)
 centerx = 0
 centery = 0
 radius = 100e3
-env = 1    
+env = 1
 print(hlow)
 if patch:
   env = X * 0
@@ -277,13 +277,13 @@ if patch:
 
   print(R)
   fig, ax = plt.subplots(2,1, constrained_layout=True)
-  pcm=ax[1].pcolormesh(x/1.e3,y/1.e3,env,rasterized=True, 
+  pcm=ax[1].pcolormesh(x/1.e3,y/1.e3,env,rasterized=True,
                       shading='auto', )
   fig.savefig(outdir+'/figs/env.png')
 
 if ndec > 1:
   print('convolve!')
-  hlow = scisig.convolve2d(hlow, np.ones((ndec, ndec)) / ndec**2, 
+  hlow = scisig.convolve2d(hlow, np.ones((ndec, ndec)) / ndec**2,
                            mode='same', boundary='wrap')
 
 hnew = hlow * env
@@ -316,7 +316,7 @@ _log.info('%s %s', np.shape(x), np.shape(d))
 for i in range(0, ny, int(np.ceil(ny/20))):
   ax[0].plot(x/1.e3, d[i,:].T)
 
-pcm=ax[1].pcolormesh(x/1.e3,y/1.e3,d,rasterized=True, 
+pcm=ax[1].pcolormesh(x/1.e3,y/1.e3,d,rasterized=True,
                      shading='auto', vmin=-4000, vmax=-3000)
 fig.colorbar(pcm,ax=ax[1])
 fig.savefig(outdir+'/figs/topo.png')
@@ -381,7 +381,7 @@ if False:
 
 ################################
 # make drag co-efficients:
-qdrag = 0 * np.ones((ny, nx))  
+qdrag = 0 * np.ones((ny, nx))
 ldrag = 0 * np.ones((ny, nx))
 
 hh = amp * np.ones((ny, nx))
