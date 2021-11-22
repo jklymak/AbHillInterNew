@@ -30,7 +30,7 @@ geo_beta = 5.9e-12
 wall = True
 patch = True
 ndec = 200
-useVar_Bot_Drag = False
+useVar_Bot_Drag = True
 
 if wall:
     suff = 'Wall'
