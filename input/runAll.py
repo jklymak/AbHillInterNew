@@ -7,13 +7,14 @@ dt=90
 timetorun = "0-11:30"  # this _should_ override what is in runModel.sh
 # seconds per day
 day=86400
-# restart every ddays
+# restart every ddays  Note we are saving pickups every 3 days, so this
+# should be multiple of 3...
 ddays = 6
 
 for todo in ['OneHill100lowU5N10Amp305f141B059SmNoDrag']:
     outstr = f"{todo} queued "
     res = subprocess.check_output(["sbatch", f"-J {todo}",
-                         f"--export=start={day*15},stop={day*18 + 180},dt={dt}",
+                         f"--export=start={day*15},stop={day*(18) + 180},dt={dt}",
                          f"--time={timetorun}",
                          "runModel.sh"])
     job = res.decode('utf8').split()[-1]
