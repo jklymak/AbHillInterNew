@@ -1,12 +1,16 @@
 import os
 import subprocess
 
+# timestep to use in model (runModel.sh will modify this in `data``)
 dt=90
+# how long the model needs to run in wall time:
 timetorun = "0-11:30"  # this _should_ override what is in runModel.sh
+# seconds per day
+day=86400
+# restart every ddays
+ddays = 6
 
 for todo in ['OneHill100lowU5N10Amp305f141B059SmNoDrag']:
-    day=86400
-    ddays = 6
     outstr = f"{todo} queued "
     res = subprocess.check_output(["sbatch", f"-J {todo}",
                          f"--export=start={day*15},stop={day*18 + 180},dt={dt}",
