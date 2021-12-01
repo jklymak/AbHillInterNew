@@ -17,7 +17,7 @@ logging.basicConfig(level=logging.INFO)
 _log = logging.getLogger(__name__)
 
 
-for ndec, useVar_Bot_Drag in zip([0, 200, 200], [False, False, True]):
+for ndec, useVar_Bot_Drag in zip([0], [False]):
 
   amp = 305.
   K0 = 1.8e-4/2./np.pi
@@ -55,7 +55,6 @@ for ndec, useVar_Bot_Drag in zip([0, 200, 200], [False, False, True]):
 
   outdir0='../results/'+runname+'/'
 
-  indir =outdir0+'/indata/'
 
   ## Params for below as per Nikurashin and Ferrari 2010b
   H = 4000.
@@ -123,12 +122,14 @@ for ndec, useVar_Bot_Drag in zip([0, 200, 200], [False, False, True]):
 
       _log.info(outdir0+' Exists')
 
-    outdir=outdir0
+    indir =outdir0+'/indata/'
+
     try:
-      mkdir(outdir)
+        mkdir(indir)
     except:
-      _log.info(outdir+' Exists')
-    outdir=outdir+'input/'
+      pass
+
+    outdir=outdir0+'input/'
     try:
       mkdir(outdir)
     except:
