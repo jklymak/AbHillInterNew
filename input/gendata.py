@@ -17,7 +17,7 @@ logging.basicConfig(level=logging.INFO)
 _log = logging.getLogger(__name__)
 
 
-for ndec, useVar_Bot_Drag in zip([0], [False]):
+for ndec, useVar_Bot_Drag in zip([0, 200, 200], [False, False, True]):
 
   amp = 305.
   K0 = 1.8e-4/2./np.pi

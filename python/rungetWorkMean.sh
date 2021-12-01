@@ -3,7 +3,7 @@
 #SBATCH --mail-user=jklymak@gmail.com
 #SBATCH --mail-type=ALL
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=48
+#SBATCH --ntasks-per-node=1
 #SBATCH --time=0-00:45
 #SBATCH --mem=0
 
